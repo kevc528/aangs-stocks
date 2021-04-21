@@ -9,7 +9,7 @@ class UserBase(BaseModel):
     email: str
 
 
-class UserCreate(UserBase):
+class UserPassword(UserBase):
     """
     Additional field needed when writing
     """
