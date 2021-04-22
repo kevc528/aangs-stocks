@@ -7,7 +7,8 @@ from fastapi import Cookie, FastAPI, HTTPException, Request, Response, status
 from fastapi.responses import JSONResponse
 from fastapi_sqlalchemy import DBSessionMiddleware, db
 
-from crud import add_stock_for_user, create_user, get_user_by_email
+from crud import (add_stock_for_user, create_user, delete_stock_for_user,
+                  get_user_by_email)
 from schemas import Stock, StockCreate, User, UserPassword
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -26,15 +27,34 @@ def get_session_email(session):
 
 
 # post route to create a new user
-@app.post("/user/", response_model=User)
-def post_user(user: UserPassword):
-    return create_user(db.session, user)
+@app.post("/user", response_model=User)
+def post_user(user: UserPassword, response: Response):
+    db_user = create_user(db.session, user)
+    response.set_cookie(
+        key="session",
+        value=jwt.encode({"email": user.email}, key=jwt_secret, algorithm="HS256"),
+        max_age=600,
+    )
+    return db_user
 
 
-@app.post("/stock/", response_model=Stock)
+@app.post("/stock", response_model=Stock)
 def post_stock(stock: StockCreate, session: str = Cookie(None)):
     email = get_session_email(session)
     return add_stock_for_user(db.session, stock, email)
+
+
+@app.delete("/stock/{stock_id}")
+def delete_stock(stock_id, session: str = Cookie(None)):
+    email = get_session_email(session)
+    try:
+        delete_stock_for_user(db.session, stock_id, email)
+        return ""
+    except PermissionError:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not your stock",
+        )
 
 
 @app.post("/user/login")
@@ -68,13 +88,13 @@ def me(session: str = Cookie(None)):
     return get_user_by_email(db.session, email)
 
 
-logged_in_paths = ["/user/me", "/stock"]
+not_logged_in_paths = ["/user", "/user/login"]
 
 
 @app.middleware("http")
 async def check_session(request: Request, call_next):
     session = request.cookies.get("session")
-    if session is None and request.url.path in logged_in_paths:
+    if session is None and request.url.path not in not_logged_in_paths:
         return JSONResponse(status_code=403)
 
     response = await call_next(request)

@@ -26,3 +26,13 @@ def add_stock_for_user(db: Session, stock: StockCreate, email: str):
     db.commit()
     db.refresh(db_stock)
     return db_stock
+
+
+def delete_stock_for_user(db: Session, stock_id, email: str):
+    user_id = get_user_by_email(db, email).id
+    stock = db.query(Stock).filter(Stock.id == stock_id).first()
+    if stock.user_id == user_id:
+        db.delete(stock)
+        db.commit()
+    else:
+        raise PermissionError()
