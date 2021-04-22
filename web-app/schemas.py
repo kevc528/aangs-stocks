@@ -1,4 +1,23 @@
+from typing import List
+
 from pydantic import BaseModel
+
+
+class StockBase(BaseModel):
+    ticker: str
+    buy: bool
+    price: float
+
+
+class StockCreate(StockBase):
+    pass
+
+
+class Stock(StockBase):
+    id: int
+
+    class Config:
+        orm_mode = True
 
 
 class UserBase(BaseModel):
@@ -22,7 +41,7 @@ class User(UserBase):
     Additional field returned when reading
     """
 
-    id: int
+    stocks: List[Stock] = []
 
     class Config:
         orm_mode = True
