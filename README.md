@@ -6,6 +6,10 @@ When you make a change to the code, update the docker image using
 
 `docker-compose build`
 
+Run using
+
+`docker-compose up`
+
 When you make a change to models, make migrations using the following commands
 
 `docker-compose run web-app poetry run alembic revision --autogenerate`

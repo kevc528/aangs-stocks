@@ -7,6 +7,9 @@ RUN pip install poetry
 COPY poetry.lock /web-app/
 COPY pyproject.toml /web-app/
 
+COPY static /web-app/static
+COPY templates /web-app/templates
+
 RUN poetry install
 
 COPY . /web-app/

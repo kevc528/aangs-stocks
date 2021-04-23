@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 class StockBase(BaseModel):
     ticker: str
-    buy: bool
+    mode: str
     price: float
 
 

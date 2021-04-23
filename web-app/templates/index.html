@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Aang's Stocks</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <link rel="stylesheet" href="{{ url_for('static', path='/index.css') }}">
+
+  <script src="{{ url_for('static', path='/index.js') }}"></script>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" id="logo" class="brand-logo left">Aang's Stocks</a>
+      <div class="navbar-right">
+        <ul id="nav-mobile">
+          <form class="form-inline" action="/user/login">
+          <li>
+            <input id="email-input" type="email" class="validate" placeholder="Email" name="email" required>
+          </li>
+          <li>
+            <input id="password-input" type="text" placeholder="Password" name="password" required>
+          </li>
+          <li>
+            <button id="submit-button" class="btn waves-effect waves-light" type="submit">Login</button>
+          </li>
+          </form>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" id="stock_input_section">
+    <div class="row center-align">
+        <h4>Track a new stock</h4>
+    </div>
+    
+    <form action="#">
+      <div class="row">
+        <div class="input-field col s2 offset-s4">
+            <span>I am...</span>
+            <p>
+              <label>
+                <input name="mode" type="radio" value="buy" checked />
+                <span>waiting to buy</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="mode" type="radio" value="sell" />
+                <span>waiting to sell</span>
+              </label>
+            </p>
+        </div>
+        <div class="col s12">
+          <div class="input-field col s2 offset-s4">
+            <i class="material-icons prefix">insert_chart</i>
+            <input id="stock-input" name="ticker" type="text" class="validate" required>
+            <label for="stock-input">this stock</label>
+          </div>
+          <div class="input-field col s2">
+            <i class="material-icons prefix">attach_money</i>
+            <input id="price-input" name="price" type="number" min="0" step=".01" class="validate" required>
+            <label for="price-input">at price</label>
+          </div>
+          <div class="col s1">
+            <button id="submit-button" class="btn waves-effect waves-light" type="submit">Track</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <br>
+  <div class="container" id="tracked-stocks-section">
+    <ul class="collection with-header">
+      <li class="collection-header"><h4>Your Tracked Stocks</h4></li>
+      <li class="collection-item avatar">
+        <i class="material-icons circle green">insert_chart</i>
+        <span class="title stock-info">
+          <strong>
+            <span class="stock-ticker">AAPL</span> - 
+            <span class="stock-price">$131.94</span>
+          </strong>
+        </span>
+        <p>
+          <span class="track-info">You are <strong>waiting to <span class="track-mode"></span>sell</strong> at <span class="track-price">$140</span>.</span>
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons red-text">delete_forever</i>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>

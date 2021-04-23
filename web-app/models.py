@@ -26,11 +26,11 @@ class Stock(Base):
     """
 
     __tablename__ = "stocks"
-    __table_args__ = (UniqueConstraint("ticker", "buy", "user_id", name="unique_stock"),)
+    __table_args__ = (UniqueConstraint("ticker", "mode", "user_id", name="unique_stock"),)
 
     id = Column(Integer, primary_key=True, index=True)
     ticker = Column(String(10))
-    buy = Column(Boolean)
+    mode = Column(String(4))
     price = Column(Float)
     user_id = Column(Integer, ForeignKey("users.id"))
 

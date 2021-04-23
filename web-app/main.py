@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 from fastapi import Cookie, FastAPI, HTTPException, Request, Response, status
 from fastapi.responses import JSONResponse
 from fastapi_sqlalchemy import DBSessionMiddleware, db
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 from crud import (add_stock_for_user, create_user, delete_stock_for_user,
                   get_user_by_email)
@@ -17,14 +19,19 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 app = FastAPI()
 
 app.add_middleware(DBSessionMiddleware, db_url=os.environ["DATABASE_URL"])
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 jwt_secret = os.environ["JWT_SECRET"]
 
+templates = Jinja2Templates(directory="templates")
+
+@app.get("/")
+def root(request: Request):
+    return templates.TemplateResponse('index.html', context={'request': request})
 
 def get_session_email(session):
     decoded = jwt.decode(session, jwt_secret, algorithms=["HS256"])
     return decoded["email"]
-
 
 # post route to create a new user
 @app.post("/user", response_model=User)
@@ -88,13 +95,13 @@ def me(session: str = Cookie(None)):
     return get_user_by_email(db.session, email)
 
 
-not_logged_in_paths = ["/user", "/user/login"]
+logged_in_paths = ["/user/me", "/user/logout"]
 
 
 @app.middleware("http")
 async def check_session(request: Request, call_next):
     session = request.cookies.get("session")
-    if session is None and request.url.path not in not_logged_in_paths:
+    if session is None and (request.url.path.startswith("/stock") or request.url.path in logged_in_paths):
         return JSONResponse(status_code=403)
 
     response = await call_next(request)
