@@ -1,10 +1,9 @@
 import bcrypt
+import stockquotes
 from sqlalchemy.orm import Session
 
 from models import Stock, User
 from schemas import StockCreate, UserPassword
-
-import stockquotes
 
 
 # create a new user in the database
