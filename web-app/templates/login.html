@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <link rel="stylesheet" href="{{ url_for('static', path='/index.css') }}">
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" id="logo" class="brand-logo left">Aang's Stocks</a>
+    </div>
+  </nav>
+  
+  <br>
+  <div class="container" style="width:20%">
+    <h3>Login</h3>
+    <form class="form-inline" action="/user/login">
+      <input id="email-input" type="email" class="validate" placeholder="Email" name="email" required>
+      <input id="password-input" type="password" placeholder="Password" name="password" required>
+      <p><button id="submit-button" class="btn waves-effect waves-light" type="submit">Login</button></p>
+    </form>
+  </div>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
