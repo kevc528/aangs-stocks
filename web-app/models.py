@@ -32,6 +32,7 @@ class Stock(Base):
     ticker = Column(String(10))
     mode = Column(String(4))
     price = Column(Float)
+    current_price = Column(Float)
     user_id = Column(Integer, ForeignKey("users.id"))
 
     user = relationship("User", back_populates="stocks")

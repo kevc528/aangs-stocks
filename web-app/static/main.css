@@ -1,0 +1,8 @@
+#logo {
+    margin-left: 10px;
+}
+
+.navbar-right {
+    position: fixed;
+    right: 20px; /*pixels away from the right of the navbar*/
+}

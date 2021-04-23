@@ -4,6 +4,8 @@ from sqlalchemy.orm import Session
 from models import Stock, User
 from schemas import StockCreate, UserPassword
 
+import stockquotes
+
 
 # create a new user in the database
 def create_user(db: Session, user: UserPassword):
@@ -20,8 +22,12 @@ def get_user_by_email(db: Session, email: str):
 
 
 def add_stock_for_user(db: Session, stock: StockCreate, email: str):
+    stock.ticker = stock.ticker.upper()
+    stock_obj = stockquotes.Stock(stock.ticker)
+    current_price = stock_obj.current_price
+    print(stock_obj, current_price)
     user_id = get_user_by_email(db, email).id
-    db_stock = Stock(**stock.dict(), user_id=user_id)
+    db_stock = Stock(**stock.dict(), user_id=user_id, current_price=current_price)
     db.add(db_stock)
     db.commit()
     db.refresh(db_stock)

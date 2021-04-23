@@ -10,6 +10,7 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+  <link rel="stylesheet" href="{{ url_for('static', path='/main.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', path='/index.css') }}">
 
   <script src="{{ url_for('static', path='/index.js') }}"></script>
@@ -37,37 +38,40 @@
         <h4>Track a new stock</h4>
     </div>
     
-    <form action="/stock" method="post">
+    <form id="create-stock-form">
       <div class="row">
-        <div class="input-field col s2 offset-s4">
-            <span>I am...</span>
+        <div class="input-field col s8 offset-s4">
+            <span class="black-text">I am...</span>
             <p>
               <label>
-                <input name="mode" type="radio" value="buy" checked />
-                <span>waiting to buy</span>
+                <input name="mode-input" type="radio" value="buy" checked />
+                <span class="black-text">waiting to buy</span>
               </label>
             </p>
             <p>
               <label>
-                <input name="mode" type="radio" value="sell" />
-                <span>waiting to sell</span>
+                <input name="mode-input" type="radio" value="sell" />
+                <span class="black-text">waiting to sell</span>
               </label>
             </p>
         </div>
         <div class="col s12">
           <div class="input-field col s2 offset-s4">
             <i class="material-icons prefix">insert_chart</i>
-            <input id="stock-input" name="ticker" type="text" class="validate" required>
+            <input id="stock-input" type="text" class="validate" required>
             <label for="stock-input">this stock</label>
           </div>
           <div class="input-field col s2">
             <i class="material-icons prefix">attach_money</i>
-            <input id="price-input" name="price" type="number" min="0" step=".01" class="validate" required>
+            <input id="price-input" type="number" min="0" step=".01" class="validate" required>
             <label for="price-input">at price</label>
           </div>
           <div class="col s1">
             <button id="submit-button" class="btn waves-effect waves-light" type="submit">Track</button>
           </div>
+        </div>
+        <div class="row center-align">
+          <span id="helper-mode-message" class="grey-text">We'll email you once the stock drops to or below the price.</a>
         </div>
       </div>
     </form>
@@ -77,19 +81,8 @@
   <div class="container" id="tracked-stocks-section">
     <ul class="collection with-header">
       <li class="collection-header"><h4>Your Tracked Stocks</h4></li>
-      <li class="collection-item avatar">
-        <i class="material-icons circle green">insert_chart</i>
-        <span class="title stock-info">
-          <strong>
-            <span class="stock-ticker">AAPL</span> - 
-            <span class="stock-price">$131.94</span>
-          </strong>
-        </span>
-        <p>
-          <span class="track-info">You are <strong>waiting to <span class="track-mode"></span>sell</strong> at <span class="track-price">$140</span>.</span>
-        </p>
-        <a href="#!" class="secondary-content"><i class="material-icons red-text">delete_forever</i>
-      </li>
+      <div id="tracked-stocks-list">
+      </div>
     </ul>
   </div>
   

@@ -88,33 +88,12 @@ def login(user: UserPassword, response: Response):
         detail="Incorrect email or password",
     )
 
-"""
-@app.post("/user/login")
-def login(response: Response, email: str = Form(...), password: str = Form(...)):
-    email_user = get_user_by_email(db.session, email)
-    if email_user is not None and bcrypt.checkpw(
-        password.encode("utf-8"), email_user.hashed_password.encode("utf-8")
-    ):
-        response.set_cookie(
-            key="session",
-            value=jwt.encode({"email": email}, key=jwt_secret, algorithm="HS256"),
-            max_age=600,
-        )
-        return {"id": email_user.id}
-
-    raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Incorrect email or password",
-    )
-"""
-
-
-
 
 @app.get("/user/logout")
-def logout(response: Response):
+def logout():
+    response = RedirectResponse(url='/login')
     response.delete_cookie("session")
-    return ""
+    return response
 
 
 @app.get("/user/me", response_model=User)
@@ -123,14 +102,17 @@ def me(session: str = Cookie(None)):
     return get_user_by_email(db.session, email)
 
 
-not_logged_in_paths = ["/user", "/user/login", "/login", "/register"]
+not_logged_in_paths = ["/login", "/register", "/user", "/user/login"]
 
 
 @app.middleware("http")
 async def check_session(request: Request, call_next):
     session = request.cookies.get("session")
-    if session is None and request.url.path not in not_logged_in_paths:
+    if session is None and request.url.path not in not_logged_in_paths and not request.url.path.startswith("/static"):
         response = RedirectResponse(url='/login')
+        return response
+    elif session is not None and request.url.path in not_logged_in_paths:
+        response = RedirectResponse(url='/')
         return response
 
     response = await call_next(request)

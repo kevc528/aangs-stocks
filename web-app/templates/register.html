@@ -10,7 +10,9 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <link rel="stylesheet" href="{{ url_for('static', path='/index.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='/main.css') }}">
+
+  <script src="{{ url_for('static', path='/register.js') }}"></script>
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,26 +28,14 @@
   <br>
   <div class="container" style="width:20%">
     <h3>Create an Account</h3>
-    <form class="form-inline" onsubmit="return verifyPassword()" action="/user" method="post">
-      <input id="email-input" type="email" class="validate" placeholder="Email" name="email" required>
-      <input id="password-input" type="password" placeholder="Password" name="password" required>
-      <input id="password-verify-input" type="password" placeholder="Re-enter password" name="password-verify" required>
+    <form id="register-form" class="form-inline">
+      <input id="email-input" type="email" class="validate" placeholder="Email" required>
+      <input id="password-input" type="password" placeholder="Password" required>
+      <input id="password-verify-input" type="password" placeholder="Re-enter password" required>
       <p><button id="submit-button" class="btn waves-effect waves-light" type="submit">Create account</button></p>
     </form>
     <a class="grey-text" href="/login">I already have an account</a>
   </div>
-
-  <script>
-      function verifyPassword() {
-        var same = (document.getElementById('password-input').value == document.getElementById('password-verify-input').value);
-        if(!same){
-            alert('The inputted passwords must be the same!');
-            return false;
-        }
-        return true;
-      }
-  </script>
-
 
 
   <!-- Compiled and minified JavaScript -->

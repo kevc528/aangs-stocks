@@ -15,6 +15,7 @@ class StockCreate(StockBase):
 
 class Stock(StockBase):
     id: int
+    current_price: float
 
     class Config:
         orm_mode = True
