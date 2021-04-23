@@ -26,12 +26,13 @@
   <br>
   <div class="container" style="width:20%">
     <h3>Create an Account</h3>
-    <form class="form-inline" onsubmit="return verifyPassword()" action="/user">
+    <form class="form-inline" onsubmit="return verifyPassword()" action="/user" method="post">
       <input id="email-input" type="email" class="validate" placeholder="Email" name="email" required>
       <input id="password-input" type="password" placeholder="Password" name="password" required>
       <input id="password-verify-input" type="password" placeholder="Re-enter password" name="password-verify" required>
       <p><button id="submit-button" class="btn waves-effect waves-light" type="submit">Create account</button></p>
     </form>
+    <a class="grey-text" href="/login">I already have an account</a>
   </div>
 
   <script>
