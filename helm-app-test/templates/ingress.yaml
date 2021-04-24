@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-api-ingress
+spec:
+  rules:
+    - host: {{ .Values.application.ingress.host | quote }}
+      http:
+        paths:
+          - path: {{ .Values.application.ingress.path | quote }}
+            backend:
+              serviceName: {{ .Release.Name }}-web-app
+              servicePort: {{ .Values.fastapi.port }}
+  tls:
+    - hosts:
+        - {{ .Values.application.ingress.host }}
+      secretName: {{ .Values.application.ingress.secret_name }}
+
