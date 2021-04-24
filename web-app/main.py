@@ -7,12 +7,14 @@ from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi_sqlalchemy import DBSessionMiddleware, db
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 from crud import add_stock_for_user, create_user, delete_stock_for_user, get_user_by_email
 from schemas import Stock, StockCreate, User, UserPassword
 
 app = FastAPI()
 
+app.add_middleware(HTTPSRedirectMiddleware)
 app.add_middleware(DBSessionMiddleware, db_url=os.environ["DATABASE_URL"])
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
