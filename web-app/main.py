@@ -13,10 +13,14 @@ from schemas import Stock, StockCreate, User, UserPassword
 
 app = FastAPI()
 
-app.add_middleware(DBSessionMiddleware, db_url=os.environ["DATABASE_URL"])
+app.add_middleware(
+    DBSessionMiddleware,
+    db_url=os.getenv("DATABASE_URL", "postgresql+psycopg2://postgres:postgres@postgres:5432"),
+)
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-jwt_secret = os.environ["JWT_SECRET"]
+jwt_secret = os.getenv("JWT_SECRET", "secret")
 
 templates = Jinja2Templates(directory="templates")
 
