@@ -1,0 +1,28 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: emailer
+spec:
+  schedule: "*/1 * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - args:
+            - bash
+            - -c
+            - poetry run python email_job.py
+            env:
+            - name: DATABASE_URL
+              value: postgresql+psycopg2://postgres:postgres@postgres:5432
+            - name: EMAIL_ADDRESS
+              value: aangstocks@gmail.com
+            - name: EMAIL_PASSWORD
+              value: iloveaang
+            image: web-app:v1
+            imagePullPolicy: ""
+            name: worker
+          restartPolicy: Never
