@@ -3,7 +3,6 @@ import smtplib
 
 import stockquotes
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 from models import Stock
@@ -33,7 +32,8 @@ for ticker in db.query(Stock.ticker).distinct():
             subject = f"Buy {stock.ticker} Now!"
             text = (
                 f"Hello,\n\nThe price for {stock.ticker} is now below your requested price"
-                + f" of ${stock.price:.2f}. It is currently at ${current_price:.2f}.\n\nLove you,\nAang"
+                + f" of ${stock.price:.2f}. It is currently at ${current_price:.2f}.\n\n"
+                + "Love you,\nAang"
             )
             message = "Subject: {}\n\n{}".format(subject, text)
 
@@ -46,7 +46,8 @@ for ticker in db.query(Stock.ticker).distinct():
             subject = f"Sell {stock.ticker} Now!"
             text = (
                 f"Hello,\n\nThe price for {stock.ticker} is now above your requested price"
-                + f" of ${stock.price:.2f}. It is currently at ${current_price:.2f}.\n\nLove you,\nAang"
+                + f" of ${stock.price:.2f}. It is currently at ${current_price:.2f}.\n\n"
+                + "Love you,\nAang"
             )
             message = "Subject: {}\n\n{}".format(subject, text)
 
