@@ -20,3 +20,7 @@ The Postgres admin tool can be found at `localhost:5050`. You can login with use
 password `password`. After logging in, you can add our database server. Make sure to use the connection tab. 
 Remember the database was named `postgres` in the docker compose and the username and password are also both 
 `postgres`.
+
+Run the cronjob using
+
+`docker-compose run web-app poetry run python email_job.py`
