@@ -23,6 +23,8 @@ stockquotes = "^2.0.1"
 bs4 = "^0.0.1"
 requests = "^2.25.1"
 lxml = "^4.6.3"
+async-asgi-testclient = "^1.4.6"
+pytest-asyncio = "^0.15.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

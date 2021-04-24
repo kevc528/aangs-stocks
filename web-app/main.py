@@ -8,7 +8,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi_sqlalchemy import DBSessionMiddleware, db
 
-from crud import add_stock_for_user, create_user, delete_stock_for_user, get_user_by_email
+from crud import (add_stock_for_user, create_user, delete_stock_for_user,
+                  get_user_by_email)
 from schemas import Stock, StockCreate, User, UserPassword
 
 app = FastAPI()
