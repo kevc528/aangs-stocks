@@ -6,3 +6,9 @@
     position: fixed;
     right: 20px; /*pixels away from the right of the navbar*/
 }
+
+#tracked-stocks-section {
+    margin-left: auto;
+    margin-right: auto;
+    width: 45%;
+}

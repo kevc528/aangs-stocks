@@ -24,7 +24,6 @@ def add_stock_for_user(db: Session, stock: StockCreate, email: str):
     stock.ticker = stock.ticker.upper()
     stock_obj = stockquotes.Stock(stock.ticker)
     current_price = stock_obj.current_price
-    print(stock_obj, current_price)
     user_id = get_user_by_email(db, email).id
     db_stock = Stock(**stock.dict(), user_id=user_id, current_price=current_price)
     db.add(db_stock)
