@@ -1,9 +1,36 @@
-name: Bender Catalog
+name: Aang's stocks
 
 # Run this workflow every time a new commit pushed to your repository
 on: push
 
-jobs:       
+jobs:
+  test:
+    # Name the Job
+    name: Test application
+    # Set the type of machine to run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # TODO: install poetry and test code
+      - name: Install poetry dependencies
+        run: |-
+          cd web-app
+          pip3 install poetry
+          poetry install
+
+      - name: Lint
+        run: |-
+          cd web-app
+          poetry run flake8
+      
+      - name: Run tests
+        run: |- 
+          cd web-app
+          poetry run pytest       
   build:
     # Name the Job
     name: Build and publish docker image
