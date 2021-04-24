@@ -118,6 +118,7 @@ async def check_session(request: Request, call_next):
     if (
         session is None
         and request.url.path not in not_logged_in_paths
+        and not request.url.path.startswith("/favicon.ico")
         and not request.url.path.startswith("/static")
     ):
         print("REDIRECT TO LOGIN:")
