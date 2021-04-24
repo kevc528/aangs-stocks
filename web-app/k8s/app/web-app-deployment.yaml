@@ -26,7 +26,12 @@ spec:
         io.kompose.service: web-app
     spec:
       containers:
-      - env:
+      - args:
+        - bash
+        - -c
+        - poetry run alembic upgrade head && poetry run uvicorn main:app --host 0.0.0.0
+          --port 8000 --reload
+        env:
         - name: DATABASE_URL
           value: postgresql+psycopg2://postgres:postgres@postgres:5432
         - name: EMAIL_ADDRESS

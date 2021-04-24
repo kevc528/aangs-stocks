@@ -14,5 +14,4 @@ COPY templates /web-app/templates
 
 COPY . /web-app/
 
-CMD ["poetry", "run", "alembic", "upgrade", "head"]
-CMD ["poetry", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 8000
