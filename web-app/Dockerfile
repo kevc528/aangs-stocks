@@ -7,10 +7,7 @@ RUN pip install poetry
 COPY poetry.lock /web-app/
 COPY pyproject.toml /web-app/
 
-RUN poetry install
-
-ENV DATABASE_URL postgresql+psycopg2://postgres:postgres@postgres:5432
-ENV JWT_SECRET iloveaang
+RUN poetry install --no-dev
 
 COPY static /web-app/static
 COPY templates /web-app/templates

@@ -3,11 +3,11 @@ services:
   postgres:
     image: postgres
     ports:
-        - "5432:5432"
+      - "5432:5432"
     environment:
-    - POSTGRES_USER=postgres
-    - POSTGRES_PASSWORD=postgres
-    - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
   web-app:
     build: .
     volumes:
@@ -16,6 +16,11 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:postgres@postgres:5432
+      - JWT_SECRET=iloveaang
+      - EMAIL_ADDRESS=aangstocks@gmail.com
+      - EMAIL_PASSWORD=iloveaang
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
