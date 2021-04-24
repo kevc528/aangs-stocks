@@ -7,7 +7,9 @@ from sqlalchemy.orm import sessionmaker
 
 from models import Stock
 
-SQLALCHEMY_DATABASE_URL = os.environ["DATABASE_URL"]
+SQLALCHEMY_DATABASE_URL = os.getenv(
+    "DATABASE_URL", "postgresql+psycopg2://postgres:postgres@postgres:5432"
+)
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -16,8 +18,8 @@ db = SessionLocal()
 
 smtpObj = smtplib.SMTP_SSL("smtp.gmail.com", 465)
 
-email = os.environ["EMAIL_ADDRESS"]
-password = os.environ["EMAIL_PASSWORD"]
+email = os.getenv("EMAIL_ADDRESS", "postgresql+psycopg2://postgres:postgres@postgres:5432")
+password = os.getenv("EMAIL_PASSWORD", "postgresql+psycopg2://postgres:postgres@postgres:5432")
 
 smtpObj.login(email, password)
 
