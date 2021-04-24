@@ -110,8 +110,10 @@ not_logged_in_paths = ["/login", "/register", "/user", "/user/login"]
 @app.middleware("http")
 async def check_session(request: Request, call_next):
     session = request.cookies.get("session")
-    print("REQUEST URL: " request.url)
-    print("REQUEST PATH: " request.url.path)
+    print("REQUEST URL:")
+    print(request.url)
+    print("REQUEST PATH")
+    print(request.url.path)
         
     if (
         session is None
