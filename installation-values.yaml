@@ -1,0 +1,12 @@
+application:
+  ingress:
+    host: maxdu.cis188.org
+    secret_name: maxdu-cis188-org-tls
+
+fastapi:
+  image: ghcr.io/kevc528/aangs-stocks/web-app
+  tag: 1e71e1a5d0c53a94ab6a58c2c67a0ad37ca8e5ae
+  port: 8000
+
+cronjob:
+  schedule: "*/1 * * * *"

@@ -1,0 +1,24 @@
+# Default values for bender-catalog.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+application:
+  ingress:
+    host: None
+    secret_name: None
+    path: "/"
+
+cronjob:
+  schedule: "*/1 * * * *"
+
+fastapi:
+  image: None
+  tag: None
+  port: 8000
+  replicas: 1
+
+environment:
+  database_url: postgresql+psycopg2://postgres:postgres@postgres:5432
+  email: aangstocks@gmail.com
+  email_password: iloveaang
+  jwt_secret: iloveaang
