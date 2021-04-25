@@ -40,7 +40,7 @@ spec:
           value: iloveaang
         - name: JWT_SECRET
           value: iloveaang
-        image: web-app:v1
+        image: ghcr.io/kevc528/aangs-stocks/web-app:0ca91f60a517bfe8eee4f23a022feef0af545836
         imagePullPolicy: ""
         name: web-app
         ports:

@@ -22,7 +22,9 @@ spec:
               value: aangstocks@gmail.com
             - name: EMAIL_PASSWORD
               value: iloveaang
-            image: web-app:v1
-            imagePullPolicy: ""
+            image: ghcr.io/kevc528/aangs-stocks/web-app:0ca91f60a517bfe8eee4f23a022feef0af545836
+            imagePullPolicy: IfNotPresent
             name: worker
+          imagePullSecrets:
+            - name: docker-registry-registrycreds
           restartPolicy: Never

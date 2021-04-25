@@ -27,4 +27,4 @@ spec:
             name: worker
           imagePullSecrets:
             - name: docker-registry-registrycreds
-          restartPolicy: OnFailure
+          restartPolicy: "Never"
