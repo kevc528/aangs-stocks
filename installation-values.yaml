@@ -5,7 +5,7 @@ application:
 
 fastapi:
   image: ghcr.io/kevc528/aangs-stocks/web-app
-  tag: 947d6a323698605a024642749b23dfa63dfbba41
+  tag: 0ca91f60a517bfe8eee4f23a022feef0af545836
   port: 8000
 
 cronjob:
