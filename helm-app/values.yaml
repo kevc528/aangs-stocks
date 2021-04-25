@@ -19,6 +19,6 @@ fastapi:
 
 environment:
   database_url: postgresql+psycopg2://postgres:postgres@postgres:5432
-  email: aangstocks@gmail.com
-  email_password: iloveaang
-  jwt_secret: iloveaang
+  email: your-email
+  email_password: your-password
+  jwt_secret: your-secret

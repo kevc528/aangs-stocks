@@ -94,4 +94,4 @@ jobs:
           kubectl config set-context --current --namespace=kevc528
 
       - name: Install into cluster
-        run: helm upgrade --install -f web-app-values.yaml --set fastapi.tag=${{ github.sha }} app ./helm-app/
+        run: helm upgrade --install -f web-app-values.yaml --set fastapi.tag=${{ github.sha }},environment.email=${{ secrets.EMAIL_ADDRESS }},environment.email_password=${{ secrets.EMAIL_PASSWORD }},environment.jwt_secret=${{ secrets.JWT_ADDRESS }} app ./helm-app/

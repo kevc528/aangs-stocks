@@ -18,8 +18,8 @@ db = SessionLocal()
 
 smtpObj = smtplib.SMTP_SSL("smtp.gmail.com", 465)
 
-email = os.getenv("EMAIL_ADDRESS", "postgresql+psycopg2://postgres:postgres@postgres:5432")
-password = os.getenv("EMAIL_PASSWORD", "postgresql+psycopg2://postgres:postgres@postgres:5432")
+email = os.getenv("EMAIL_ADDRESS", "your-email-address")
+password = os.getenv("EMAIL_PASSWORD", "your-email-password")
 
 smtpObj.login(email, password)
 

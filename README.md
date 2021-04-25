@@ -5,7 +5,8 @@ Web platform with DevOps features for Aang to manage his stocks
 Run the postgres database with 
 `helm upgrade --install db ./helm-db/`
 
-Push a change to GitHub to run the web app and cronjob!
+Push a change to GitHub to run the web app and cronjob! This also performs any database migrations for the running postgres database.
+
 The app is reachable at `kevc528.cis188.org`
 
 
@@ -25,7 +26,8 @@ Next, set the default kubectl namespace with `kubectl config set-context --curre
 
 Go to the repository's root directory.
 
-Replace PENNKEY occurrences in manual-web-app-values.yaml with your own PENNKEY
+Replace PENNKEY occurrences in manual-web-app-values.yaml with your own PENNKEY. Additionally, make sure to 
+fill out email credentials and choose a JWT secret in the environment section.
 
 Run the postgres database with 
 `helm upgrade --install db ./helm-db/`
@@ -41,8 +43,17 @@ You can end the web-app/cronjob with:
 and remove/clear the database with
 `helm uninstall db`
 
+You can end the web-app/cronjob with:
+`helm uninstall app`
+
+and remove/clear the database with
+`helm uninstall db`
+
 -----------------
 ## Local deployment with docker-compose
+
+If you want to run locally with docker, make sure to change the docker-compose file to have the correct 
+environment variables for email and email password.
 
 When you make a change to the code, update the docker image using
 

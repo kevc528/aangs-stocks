@@ -20,7 +20,7 @@ app.add_middleware(
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-jwt_secret = os.getenv("JWT_SECRET", "secret")
+jwt_secret = os.getenv("JWT_SECRET", "your-secret")
 
 templates = Jinja2Templates(directory="templates")
 

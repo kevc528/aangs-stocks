@@ -20,9 +20,9 @@ services:
       - postgres
     environment:
       - DATABASE_URL=postgresql+psycopg2://postgres:postgres@postgres:5432
-      - JWT_SECRET=iloveaang
-      - EMAIL_ADDRESS=aangstocks@gmail.com
-      - EMAIL_PASSWORD=iloveaang
+      - JWT_SECRET=your-secret
+      - EMAIL_ADDRESS=your-email-address
+      - EMAIL_PASSWORD=your-email-password
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4

@@ -10,3 +10,9 @@ fastapi:
 
 cronjob:
   schedule: "*/1 * * * *"
+
+environment:
+  database_url: postgresql+psycopg2://postgres:postgres@postgres:5432
+  email: your-email-address
+  email_password: your-email-password
+  jwt_secret: your-secret
