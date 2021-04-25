@@ -23,6 +23,8 @@ spec:
             - name: EMAIL_PASSWORD
               value: {{ .Values.environment.email_password }}
             image: "{{ .Values.fastapi.image }}:{{ .Values.fastapi.tag }}"
-            imagePullPolicy: ""
-            name: {{ .Release.Name }}-worker
-          restartPolicy: Never
+            imagePullPolicy: IfNotPresent
+            name: worker
+          imagePullSecrets:
+            - name: docker-registry-registrycreds
+          restartPolicy: OnFailure
