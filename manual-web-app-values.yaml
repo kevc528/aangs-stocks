@@ -5,7 +5,7 @@ application:
 
 fastapi:
   image: ghcr.io/kevc528/aangs-stocks/web-app
-  tag: 0ca91f60a517bfe8eee4f23a022feef0af545836
+  tag: 24fb9a986d68fd4557a1204a9398c474d932c20d
   port: 8000
 
 cronjob:
@@ -13,6 +13,6 @@ cronjob:
 
 environment:
   database_url: postgresql+psycopg2://postgres:postgres@postgres:5432
-  email: your-email-address
-  email_password: your-email-password
-  jwt_secret: your-secret
+  email: aangstocks@gmail.com
+  email_password: iloveaang
+  jwt_secret: iloveaang

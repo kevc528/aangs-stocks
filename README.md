@@ -1,11 +1,15 @@
 # aangs-stocks
+
+![alt text](https://www.pngitem.com/pimgs/m/375-3756954_avatar-aang-png-transparent-png.png)
+
 Web platform with DevOps features for Aang to manage his stocks
 
 ## Cloud deployment:
-Run the postgres database with 
-`helm upgrade --install db ./helm-db/`
 
-Push a change to GitHub to run the web app and cronjob! This also performs any database migrations for the running postgres database.
+Assuming Kevin has the database running...
+
+Push a change to GitHub to run the web app and cronjob! 
+This also performs any database migrations for the running postgres database.
 
 The app is reachable at `kevc528.cis188.org`
 
@@ -36,12 +40,6 @@ Run the web-app & cronjob with
 `helm upgrade --install -f manual-web-app-values.yaml app ./helm-app/`
 
 This also performs any database migrations for the running postgres database.
-
-You can end the web-app/cronjob with:
-`helm uninstall app`
-
-and remove/clear the database with
-`helm uninstall db`
 
 You can end the web-app/cronjob with:
 `helm uninstall app`
