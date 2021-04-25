@@ -1,4 +1,7 @@
 # aangs-stocks
+
+![alt text](https://www.pngitem.com/pimgs/m/375-3756954_avatar-aang-png-transparent-png.png)
+
 Web platform with DevOps features for Aang to manage his stocks
 
 ## Cloud deployment:
