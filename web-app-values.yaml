@@ -1,0 +1,11 @@
+application:
+  ingress:
+    host: kevc528.cis188.org
+    secret_name: kevc528-cis188-org-tls
+
+fastapi:
+  image: ghcr.io/kevc528/aangs-stocks/web-app
+  port: 8000
+
+cronjob:
+  schedule: "*/1 * * * *"
