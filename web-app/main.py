@@ -118,7 +118,12 @@ async def check_session(request: Request, call_next):
     print(request.url)
     print("REQUEST PATH")
     print(request.url.path)
-    if (session is None and request.url.path not in not_logged_in_paths and not request.url.path.startswith("/favicon.ico")and not request.url.path.startswith("/static")):
+    if (
+        session is None
+        and request.url.path not in not_logged_in_paths
+        and not request.url.path.startswith("/favicon.ico")
+        and not request.url.path.startswith("/static")
+    ):
         response = RedirectResponse(url="/login")
         return response
     elif session is not None and request.url.path in not_logged_in_paths:
